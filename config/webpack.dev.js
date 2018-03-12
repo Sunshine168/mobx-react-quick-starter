@@ -2,11 +2,14 @@ const path = require('path')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const config = require('config')
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const baseConfig = require('./webpack.base')
 
 const HotMiddleWareConfig = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
-const OpenBrowserPlugin = require('open-browser-webpack-plugin')
+
 
 const PORT = process.env.PORT ? process.env.PORT : config.get('HMR_PORT')
 
@@ -26,5 +29,6 @@ module.exports = merge(baseConfig, {
       template: path.resolve(__dirname, '../template.html')
     }),
     new OpenBrowserPlugin({ url: `http://localhost:${PORT}` }),
+    new ErrorOverlayPlugin(),
   ],
 })
