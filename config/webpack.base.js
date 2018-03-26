@@ -1,17 +1,21 @@
 const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const  NyanProgressPlugin = require('nyan-progress-webpack-plugin');
+const NyanProgressPlugin = require('nyan-progress-webpack-plugin')
+const HappyPack = require('happypack')
+const os = require('os')
+
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom', 'mobx', 'mobx-react','styled-components'],
+    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'styled-components'],
     main: path.resolve(__dirname, '../main.js'),
   },
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -19,7 +23,7 @@ module.exports = {
     new NyanProgressPlugin(),
   ],
   resolve: {
-    extensions: ['*', '.js', 'jsx']
+    extensions: ['*', '.js', 'jsx'],
   },
   module: {
     rules: [
@@ -27,22 +31,27 @@ module.exports = {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader', {
+          {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: true
-            }
-          }
-        ]
-      }, {
+              cacheDirectory: true,
+            },
+          },
+          {
+            loader:'happypack/loade?id=jsHappyr',
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
-          }, {
-            loader: "css-loader"
-          }
-        ]
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -53,8 +62,8 @@ module.exports = {
               limit: 8192,
               mimetype: 'image/png',
               name: 'static/images/[name].[ext]',
-            }
-          }
+            },
+          },
         ],
       },
       {
@@ -63,9 +72,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'static/fonts/[name].[ext]'
-            }
-          }
+              name: 'static/fonts/[name].[ext]',
+            },
+          },
         ],
       },
       {
@@ -77,8 +86,8 @@ module.exports = {
               limit: 8192,
               mimetype: 'application/font-woff',
               name: 'static/fonts/[name].[ext]',
-            }
-          }
+            },
+          },
         ],
       },
       {
@@ -90,8 +99,8 @@ module.exports = {
               limit: 8192,
               mimetype: 'application/octet-stream',
               name: 'static/fonts/[name].[ext]',
-            }
-          }
+            },
+          },
         ],
       },
       {
@@ -103,10 +112,26 @@ module.exports = {
               limit: 8192,
               mimetype: 'image/svg+xml',
               name: 'images/[name].[ext]',
-            }
-          }
+            },
+          },
         ],
       },
-    ]
-  }
+    ],
+  },
+  // plugins: [
+  //   new HappyPack({
+  //     id: 'jsHappy',
+  //     cache: true,
+  //     threadPool: happyThreadPool,
+  //     loaders: [
+  //       {
+  //         path: 'babel',
+  //         query: {
+  //           cacheDirectory: '.webpack_cache',
+  //           presets: ['es2015', 'react'],
+  //         },
+  //       },
+  //     ],
+  //   }),
+  // ],
 }

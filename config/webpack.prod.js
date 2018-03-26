@@ -7,6 +7,7 @@ const MinifyPlugin = require('babel-minify-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
+
 module.exports = merge(baseConfig, {
   output: {
     path: path.join(__dirname, '../build'),
