@@ -1,0 +1,150 @@
+{
+  "errors": [
+    "./src/index.js\nModule parse failed: Unexpected token (23:6)\nYou may need an appropriate loader to handle this file type.\n|   render() {\n|     return (\n|       <Provider {...stores}>\n|         <ThemeProvider theme={theme}>\n|           <Routes />"
+  ],
+  "warnings": [
+    "configuration\nThe 'mode' option has not been set. Set 'mode' option to 'development' or 'production' to enable defaults for this environment. "
+  ],
+  "version": "4.2.0",
+  "hash": "182be3d2d945696d898b",
+  "time": 330,
+  "builtAt": 1522069618863,
+  "publicPath": "",
+  "outputPath": "/Users/MacBook/Documents/react/mobx-react-quick-starter/dist",
+  "assetsByChunkName": {
+    "main": "main.js"
+  },
+  "assets": [
+    {
+      "name": "main.js",
+      "size": 799,
+      "chunks": [0],
+      "chunkNames": ["main"]
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "main": {
+      "chunks": [0],
+      "assets": ["main.js"]
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 255,
+      "names": ["main"],
+      "files": ["main.js"],
+      "hash": "3fdc803825dd27b22277",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/MacBook/Documents/react/mobx-react-quick-starter/src/index.js",
+          "name": "./src/index.js",
+          "index": 0,
+          "index2": 0,
+          "size": 255,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [0],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "profile": {
+            "factory": 59,
+            "building": 15
+          },
+          "failed": true,
+          "errors": 1,
+          "warnings": 0,
+          "assets": [],
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src",
+              "loc": "main"
+            }
+          ],
+          "usedExports": true,
+          "providedExports": null,
+          "optimizationBailout": [
+            "ModuleConcatenation bailout: Module is not an ECMAScript module"
+          ],
+          "depth": 0,
+          "source":
+            "throw new Error(\"Module parse failed: Unexpected token (23:6)\\nYou may need an appropriate loader to handle this file type.\\n|   render() {\\n|     return (\\n|       <Provider {...stores}>\\n|         <ThemeProvider theme={theme}>\\n|           <Routes />\");"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "main",
+          "request": "./src",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": 0,
+      "identifier": "/Users/MacBook/Documents/react/mobx-react-quick-starter/src/index.js",
+      "name": "./src/index.js",
+      "index": 0,
+      "index2": 0,
+      "size": 255,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [0],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "profile": {
+        "factory": 59,
+        "building": 15
+      },
+      "failed": true,
+      "errors": 1,
+      "warnings": 0,
+      "assets": [],
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./src",
+          "loc": "main"
+        }
+      ],
+      "usedExports": true,
+      "providedExports": null,
+      "optimizationBailout": ["ModuleConcatenation bailout: Module is not an ECMAScript module"],
+      "depth": 0,
+      "source":
+        "throw new Error(\"Module parse failed: Unexpected token (23:6)\\nYou may need an appropriate loader to handle this file type.\\n|   render() {\\n|     return (\\n|       <Provider {...stores}>\\n|         <ThemeProvider theme={theme}>\\n|           <Routes />\");"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}

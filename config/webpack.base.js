@@ -4,7 +4,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const  NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill'],
+  entry: {
+    vendor: ['react', 'react-dom', 'mobx', 'mobx-react','styled-components'],
+    main: path.resolve(__dirname, '../main.js'),
+  },
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'bundle.js',
@@ -22,6 +25,7 @@ module.exports = {
     rules: [
       {
         test: /\.js|jsx$/,
+        // include: path.resolve(__dirname, '../src'),
         exclude: /node_modules/,
         use: [
           'babel-loader', {

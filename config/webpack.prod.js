@@ -5,17 +5,17 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 module.exports = merge(baseConfig, {
-  entry: [path.resolve(__dirname, '../main.js')],
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'static/js/[name].[hash].js',
     chunkFilename: 'static/js/[name].[hash].chunk.js',
     publicPath: '/',
   },
-  optimization:{
-    splitChunks:{
+  optimization: {
+    splitChunks: {
       name: 'vendor',
     },
   },
@@ -37,6 +37,16 @@ module.exports = merge(baseConfig, {
       },
     }),
     new webpack.HashedModuleIdsPlugin(),
-    new MinifyPlugin(),
+    new ParallelUglifyPlugin({
+      cacheDir: '.cache/',
+      uglifyJS:{
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false
+        }
+      }
+    })
   ],
 })
