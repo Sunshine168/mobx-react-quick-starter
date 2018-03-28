@@ -2,16 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin')
-const HappyPack = require('happypack')
-const os = require('os')
-
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 module.exports = {
-  entry: {
-    vendor: ['react', 'react-dom', 'mobx', 'mobx-react', 'styled-components'],
-    main: path.resolve(__dirname, '../main.js'),
-  },
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'bundle.js',
@@ -36,9 +28,6 @@ module.exports = {
             options: {
               cacheDirectory: true,
             },
-          },
-          {
-            loader:'happypack/loade?id=jsHappyr',
           },
         ],
       },
@@ -118,20 +107,4 @@ module.exports = {
       },
     ],
   },
-  // plugins: [
-  //   new HappyPack({
-  //     id: 'jsHappy',
-  //     cache: true,
-  //     threadPool: happyThreadPool,
-  //     loaders: [
-  //       {
-  //         path: 'babel',
-  //         query: {
-  //           cacheDirectory: '.webpack_cache',
-  //           presets: ['es2015', 'react'],
-  //         },
-  //       },
-  //     ],
-  //   }),
-  // ],
 }

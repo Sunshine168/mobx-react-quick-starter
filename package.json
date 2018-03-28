@@ -82,7 +82,7 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.21.0",
     "webpack-merge": "^4.1.1",
-    "happypack": "^4.0.1",
+    "happypack": "^5.0.0-beta.2",
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },
   "keywords": ["mobx", "react", "styled-components", "flow"],
