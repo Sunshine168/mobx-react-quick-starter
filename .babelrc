@@ -1,24 +1,25 @@
 {
   "presets": [
-    "flow",
+    "@babel/preset-flow",
     [
-      "babel-preset-env",
+      "@babel/preset-env",
       {
         "loose": true,
         "uglify": true,
         "modules": false,
+        "useBuiltIns": false,
         "targets": {
-          "browsers": ["> 1%", "last 3 versions", "IE >= 9"]
-        },
-        "exclude": ["transform-regenerator", "transform-es2015-typeof-symbol"]
+          "browsers": ["> 1%", "last 3 versions", "IE >= 8"]
+        }
       }
     ],
-    "stage-0"
+    "@babel/preset-react"
   ],
   "plugins": [
     "flow-runtime",
     "transform-decorators-legacy",
+    "transform-class-properties",
     "react-hot-loader/babel",
-    "babel-plugin-transform-react-jsx"
+    "@babel/plugin-transform-runtime"
   ]
 }
