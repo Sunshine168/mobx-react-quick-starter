@@ -12,7 +12,7 @@ const HotMiddleWareConfig = 'webpack-hot-middleware/client?path=/__webpack_hmr&t
 
 const PORT = process.env.PORT ? process.env.PORT : config.get('HMR_PORT')
 
-module.exports = {
+module.exports = merge(baseConfig, {
   entry: [HotMiddleWareConfig, 'react-hot-loader/patch', path.resolve(__dirname, '../main.js')],
   devtool: '#cheap-module-source-map',
   devServer: {
@@ -30,4 +30,4 @@ module.exports = {
     new OpenBrowserPlugin({ url: `http://localhost:${PORT}` }),
     new ErrorOverlayPlugin(),
   ],
-}
+})
