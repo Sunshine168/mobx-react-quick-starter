@@ -17,8 +17,8 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept(['./src/app', './src/store'], () => {
-    const newApp = require('./src/app').default
+  module.hot.accept(['./src/', './src/store'], () => {
+    const newApp = require('./src/').default
     render(hot(module)(newApp))
   })
 }
