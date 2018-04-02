@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { inject, observer } from 'mobx-react'
+import { observable, action } from 'mobx'
 
 import { Container } from './component'
 
@@ -24,12 +25,20 @@ const TestElement = styled.div`
 }))
 @observer
 export default class Demo extends Component<Props> {
+  @observable tempCount = 0
+
+  @action.bound
+  tempIncrease() {
+    this.tempCount += 1
+  }
+
   render() {
     return (
       <Container>
         <button onClick={this.props.increase}>+</button>
         <button onClick={this.props.decrease}>-</button>
         <div>{this.props.count}</div>
+        <div>{this.tempCount}</div>
         <TestElement />
       </Container>
     )

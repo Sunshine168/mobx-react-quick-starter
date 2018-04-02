@@ -1,17 +1,15 @@
 /* eslint-disable */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
+import { hot } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
 import App from './src'
 
 const render = Component => {
   ReactDOM.render(
-    <AppContainer warnings={false}>
-      <BrowserRouter>
-        <Component />
-      </BrowserRouter>
-    </AppContainer>,
+    <BrowserRouter>
+      <Component />
+    </BrowserRouter>,
     document.getElementById('app'),
   )
 }
@@ -19,8 +17,8 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept(['./src', './src/store'], () => {
-    const newApp = require('./src').default
-    render(newApp)
+  module.hot.accept(['./src/app', './src/store'], () => {
+    const newApp = require('./src/app').default
+    render(hot(module)(newApp))
   })
 }
