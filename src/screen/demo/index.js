@@ -33,7 +33,6 @@ class Demo extends Component<Props> {
   }
 
   render() {
-    console.log('render234')
     return (
       <Container>
         <button onClick={this.props.increase}>+</button>
@@ -46,4 +45,5 @@ class Demo extends Component<Props> {
   }
 }
 
+// react-hot-loader work with  mobx decorator in new version seem break
 export default decorate(Demo, { tempCount: observable })
