@@ -27,6 +27,15 @@ module.exports = merge(baseConfig, {
     runtimeChunk: true,
     splitChunks: {
       name: 'vendor',
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2,
+          maxInitialRequests: 5,
+          minSize: 2,
+          name: 'common',
+        },
+      },
     },
   },
   mode: 'production',
