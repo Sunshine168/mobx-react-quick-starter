@@ -63,3 +63,7 @@ build
 
 # cache 
 .cache
+
+
+# flow-typed
+flow-typed/npm/*

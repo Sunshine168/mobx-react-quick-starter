@@ -12,7 +12,8 @@
     "eslint": "eslint src",
     "prettier-eslint": "prettier-eslint",
     "precommit": "lint-staged",
-    "format": "prettier-eslint --write \"src/**/*.js\""
+    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "flow-typed": "rimraf flow-typed/npm && flow-typed install --overwrite || true"
   },
   "lint-staged": {
     "*.{js,json}": ["format", "git add"]
