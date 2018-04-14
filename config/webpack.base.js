@@ -1,21 +1,39 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const NyanProgressPlugin = require('nyan-progress-webpack-plugin')
+const  NyanProgressPlugin = require('nyan-progress-webpack-plugin')
+const config = require('config')
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+const configAnalyzerPort = config.get('analyzer.port')
+const analyzerPort = configAnalyzerPort ? configAnalyzerPort : 8080
+
+const plugins = [
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin(),
+  new NyanProgressPlugin(),
+]
+
+
+if (process.env.analyzer) {
+  plugins.push(new BundleAnalyzerPlugin({
+    analyzerPort,
+  }))
+}
+
 
 module.exports = {
+  entry: ['babel-polyfill'],
   output: {
     path: path.join(__dirname, '../build'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
-    new NyanProgressPlugin(),
-  ],
+  plugins,
   resolve: {
-    extensions: ['*', '.js', 'jsx'],
+    extensions: ['*', '.js', 'jsx']
   },
   module: {
     rules: [
@@ -23,24 +41,22 @@ module.exports = {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
         use: [
-          {
+          'babel-loader', {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: true,
-            },
-          },
-        ],
-      },
-      {
+              cacheDirectory: true
+            }
+          }
+        ]
+      }, {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
+            loader: "style-loader"
+          }, {
+            loader: "css-loader"
+          }
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
@@ -51,8 +67,8 @@ module.exports = {
               limit: 8192,
               mimetype: 'image/png',
               name: 'static/images/[name].[ext]',
-            },
-          },
+            }
+          }
         ],
       },
       {
@@ -61,9 +77,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'static/fonts/[name].[ext]',
-            },
-          },
+              name: 'static/fonts/[name].[ext]'
+            }
+          }
         ],
       },
       {
@@ -75,8 +91,8 @@ module.exports = {
               limit: 8192,
               mimetype: 'application/font-woff',
               name: 'static/fonts/[name].[ext]',
-            },
-          },
+            }
+          }
         ],
       },
       {
@@ -88,8 +104,8 @@ module.exports = {
               limit: 8192,
               mimetype: 'application/octet-stream',
               name: 'static/fonts/[name].[ext]',
-            },
-          },
+            }
+          }
         ],
       },
       {
@@ -101,10 +117,10 @@ module.exports = {
               limit: 8192,
               mimetype: 'image/svg+xml',
               name: 'images/[name].[ext]',
-            },
-          },
+            }
+          }
         ],
       },
-    ],
-  },
+    ]
+  }
 }

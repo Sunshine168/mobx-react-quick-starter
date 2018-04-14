@@ -1,8 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import DevTools from 'mobx-react-devtools'
 import Loadable from 'react-loadable'
 import Loading from './component/loading'
+
+const DevTools =
+  process.env.NODE_ENV !== 'production' ? require('mobx-react-devtools').default : React.Fragment
 
 const LoadableComponent = Loadable({
   loader: () => import('./screen/demo'),
