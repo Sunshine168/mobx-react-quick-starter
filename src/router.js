@@ -11,11 +11,17 @@ const LoadableComponent = Loadable({
   loading: Loading,
 })
 
+const FormDemo = Loadable({
+  loader: () => import('./screen/form'),
+  loading: Loading,
+})
+
 class AppRouter extends React.Component {
   render() {
     return (
       <div>
-        <Route path='/counter' component={LoadableComponent} />
+        <Route path='/counter' exact component={LoadableComponent} />
+        <Route path='/form' component={FormDemo} />
         <DevTools />
       </div>
     )
